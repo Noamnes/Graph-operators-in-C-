@@ -3,20 +3,20 @@ CXX = g++
 CXXFLAGS = -std=c++11 -g
 OBJECTS= Graph.o Algorithms.o
 
-run: test
-	./test
+run: tests
+	./tests
 
-test: Test.o $(OBJECTS)
+tests: Test_ass1.o Test.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 demo : Demo.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-valgrind_tests: test
+valgrind_tests: tests
 	valgrind --leak-check=full ./$<
 
 %.o : %.cpp
 	$(CXX) $(CXXFLAGS) -c $<
 
 clean:
-	rm *.o test demo
+	rm *.o tests demo
