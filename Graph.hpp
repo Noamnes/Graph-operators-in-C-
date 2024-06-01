@@ -45,7 +45,7 @@ namespace ariel{
                     Graph operator--(int); // postfix
 
                     // multiplication operator:
-                    Graph operator*(const Graph& other) const;
+                    Graph operator*(const Graph& other) const; 
 
                     // levels of independence among operators:
                     // 1. g+g, +g, ++g, -g
