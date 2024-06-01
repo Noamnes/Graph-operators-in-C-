@@ -51,7 +51,7 @@ namespace ariel{
                     // 1. g+g, +g, ++g, -g
                     // 2. g+=g, g++. g-g
                     // 3. g-=g
-                
+                // noam: check
                 // relation operators:
                 bool operator==(const Graph& other)const{
                     return (this->edges == other.edges) && (this->getSize() == other.getSize());
