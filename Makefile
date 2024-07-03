@@ -15,7 +15,7 @@ demo : Demo.o $(OBJECTS)
 valgrind_tests: tests
 	valgrind --leak-check=full ./$<
 
-%.o : %.cpp
+%.o : %.cpp %.hpp
 	$(CXX) $(CXXFLAGS) -c $<
 
 clean:

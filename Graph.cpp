@@ -112,16 +112,10 @@ bool ariel::Graph::operator>(const Graph& other)const{
     return false;
 }
 
-
-
-
-//--------------------------------------------------------
 // ? aritmetic operators
-//--------------------------------------------------------
 
-//--------------------------------------------------------
 // ? addition operators
-//--------------------------------------------------------
+
 ariel::Graph ariel::Graph::operator+(const Graph& other) const{
     if(this->getSize() != other.getSize())
         throw std::invalid_argument("the graphs are not the same size!!");
@@ -171,9 +165,7 @@ ariel::Graph ariel::Graph::operator++(int){
     return temp;
 } 
 
-//--------------------------------------------------------
 // ? subtraction operators:
-//--------------------------------------------------------
 
 ariel::Graph ariel::Graph::operator-() const{
     int vexNum = this->getSize();
@@ -206,7 +198,7 @@ ariel::Graph ariel::Graph::operator--(int){
     return temp;
 }
 
-// muliplication:
+// ? muliplication operators: 
 ariel::Graph ariel::Graph::operator*(const Graph& other) const{
     
     // name *this as left and other as right
@@ -233,4 +225,33 @@ ariel::Graph ariel::Graph::operator*(const Graph& other) const{
     }
     Graph newGraph(newAdgMat);
     return newGraph;
+}
+
+ariel::Graph ariel::Graph::operator*(int num) const{
+    
+    vector<vector<int>> newAdjMat = this->adjMat; // creating a deep copy of this matrix.
+    
+    for(int i=0; i<newAdjMat.size(); i++){
+        for(int j=0; j<newAdjMat[i].size(); j++){
+            newAdjMat[i][j] *= num;
+        }
+    }
+
+    return Graph(newAdjMat);
+}
+
+// outside operators:
+
+ariel::Graph ariel::operator*(int num ,Graph g){
+    return g*num;
+}
+
+std::ostream& ariel::operator<<(std::ostream& os, const Graph& g){
+    for(int i=0; i<g.getAdjMat().size(); i++){
+        for(int j=0; j<g.getAdjMat()[i].size(); j++){
+            os << g.getAdjMat()[i][j] << " ";
+        }
+        os << std::endl;
+    }
+    return os;
 }

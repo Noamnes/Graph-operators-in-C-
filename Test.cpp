@@ -373,17 +373,16 @@ TEST_SUITE("TEST relation operators"){
                 CHECK((g2 > g1) == false);
     }
 
-    // TEST_CASE("Test: graph1<graph2"){
+    // no need to check:
+    // no need to check. operator < uses operator > in the simplest way possible!
+    // TEST_CASE("Test: graph1<graph2"){}
 
-    // }
+    // no need to check. operator <= uses operator < and == in the simplest way possible!
+    // TEST_CASE("Test: graph1<=graph2"){}
+    
+    // no need to check. operator <= uses operator < and == in the simplest way possible!
+    // TEST_CASE("Test: graph1>=graph2"){}
 
-    // TEST_CASE("Test: graph1<=graph2"){
-
-    // }
-
-    // TEST_CASE("Test: graph1>=graph2"){
-
-    // }
 }
 
 TEST_SUITE("TEST multiplication operators"){
@@ -415,20 +414,27 @@ TEST_SUITE("TEST multiplication operators"){
         checkGraphValues(g1*g2, expectedGraph, true, 9);
     }
 
-    // TEST_CASE("Test int*graph and graph*int"){
-    //     ariel::Graph g({{0, 2, 0},
-    //                     {1, 0, 1},
-    //                     {0, 0, 0}});
-    //     vector<vector<int>> expectedGraph1 = {{0, 4, 0},
-    //                                           {2, 0, 2},
-    //                                           {0, 0, 0}};
-    //     checkGraphValues(2*g, expectedGraph1, true, 3);
-    //     checkGraphValues(g*2, expectedGraph1, true, 3);
-    // }
+    TEST_CASE("Test int*graph and graph*int"){
+        ariel::Graph g({{0, 2, 0},
+                        {1, 0, 1},
+                        {0, 0, 0}});
+        vector<vector<int>> expectedGraph1 = {{0, 4, 0},
+                                              {2, 0, 2},
+                                              {0, 0, 0}};
+        checkGraphValues(2*g, expectedGraph1, true, 3);
+        checkGraphValues(g*2, expectedGraph1, true, 3);
+    }
 }
 
-// TEST_SUITE("TEST output operator"){
-//     TEST_CASE("Test cout<<graph"){
-        
-//     }
-// }
+TEST_SUITE("TEST output operator"){
+    TEST_CASE("Test cout<<graph"){
+        ariel::Graph g({{0,0,0},
+                        {1,0,1},
+                        {1,2,0}});
+        std::ostringstream output;
+        output << g;
+
+        std::string expected_output = "0 0 0 \n1 0 1 \n1 2 0 \n";
+        REQUIRE(output.str() == expected_output);
+    }
+}

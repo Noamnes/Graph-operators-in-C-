@@ -2,6 +2,7 @@
 #pragma once
 
 #include <vector>
+#include <ostream>
 
 namespace ariel{
     class Graph{
@@ -45,7 +46,8 @@ namespace ariel{
                     Graph operator--(int); // postfix
 
                     // multiplication operator:
-                    Graph operator*(const Graph& other) const; 
+                    Graph operator*(const Graph& other) const;
+                    Graph operator*(int num) const;
 
                     // levels of independence among operators:
                     // 1. g+g, +g, ++g, -g
@@ -62,6 +64,15 @@ namespace ariel{
                 }
 
                 bool operator>(const Graph& other)const;
+                
+                bool operator<(const Graph& other)const{return other > *this;}
+
+                bool operator>=(const Graph& other)const{return *this > other || *this==other;}
+
+                bool operator<=(const Graph& other)const{return *this < other || *this==other;}
 
         };
+
+    Graph operator*(int num ,Graph g);
+    std::ostream& operator<<(std::ostream& os, const Graph& g);
 }
